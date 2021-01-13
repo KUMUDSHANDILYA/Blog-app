@@ -12,7 +12,7 @@ app.use(bodyparser.urlencoded({extended:true}));
 mongoose.Promise=global.Promise;
 
 mongoose.connect(process.env.MONGO_URL,{ useNewUrlParser: true }).then(()=>
-    {console.log("DB is connected");}    
+    {console.log("DB is connected");}
 ).catch((err)=>{
     console.log(err);
     process.exit();
@@ -24,6 +24,10 @@ app.get('/',(req,res)=>{
 // app.get('/check',(req,res)=>{
 //     res.send("checking");
 // })
+
+app.use('*',(req,res,next)=>{
+    res.status(404).json({"msg":"Not found"});
+});
 
 require('./routes/route')(app);
 
