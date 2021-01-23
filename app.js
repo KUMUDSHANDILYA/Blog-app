@@ -3,8 +3,10 @@ require('dotenv').config();
 const express=require('express');
 const bodyparser=require('body-parser');
 const mongoose=require('mongoose');
+const cors = requirw('cors');
 
 const app=express();
+app.use(cors());
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
@@ -21,9 +23,7 @@ mongoose.connect(process.env.MONGO_URL,{ useNewUrlParser: true }).then(()=>
 app.get('/',(req,res)=>{
     res.send("Welcome to the class");
 });
-// app.get('/check',(req,res)=>{
-//     res.send("checking");
-// })
+
 
 require('./routes/route')(app);
 
