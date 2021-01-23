@@ -3,7 +3,7 @@ require('dotenv').config();
 const express=require('express');
 const bodyparser=require('body-parser');
 const mongoose=require('mongoose');
-const cors = requirw('cors');
+const cors = require('cors');
 
 const app=express();
 app.use(cors());
