@@ -3,22 +3,16 @@ const Blog = require('../model/model');
 // find all blogs
 exports.getall = async (req, res) => {
 
-    // Blog.find()
-    //     .then((data)=>{
-    //         res.status(200).json(data);
-    //     })
-    //     .catch((err)=>{
-    //         if(err) res.status(500).json(err);
-    //     });
-    let data;
-    try {
-        data = await Blog.find();
-        // console.log(data);
+	Blog.find().sort({updatedAt:'desc'})
+        .then((data)=>{
+            res.status(200).json(data);
+        })
+        .catch((err)=>{
+            if(err) res.status(500).json(err);
+        });
 
-    } catch (err) {
-        if (err) return res.status(500).json(err);
-    }
-    res.status(200).json(data);
+
+  
 }
 
 // find single blog by id
